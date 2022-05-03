@@ -1,2 +1,3 @@
 var str = 'first'
-var a = 'second'
+var a = 'second';
+var n;
