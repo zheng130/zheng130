@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            height: 2000px;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        let t = [];
+        t[0] = function () {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    console.log(1)
+                    resolve(1)
+                }, 0);
+            })
+        }
+        t[1] = function () {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    console.log(2)
+                    resolve(1)
+                }, 1000);
+            })
+        }
+        t[2] = function () {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    console.log(3)
+                    resolve(1)
+                }, 0);
+            })
+        }
+        async function u(arr) {
+            for (let i = 0; i < arr.length; i++) {
+                await arr[i]()
+            }
+        }
+        u(t)
+        let a = [1, [2, 3], [4, [5, 6]], 7, [8, 9]];
+        function b (arr) {
+            const initialValue = [];
+            const sumWithInitial = arr.reduce(
+            (initialValue, c) => {
+                if (Array.isArray(c)) {
+                    return initialValue.concat(b(c))
+                } else {
+                    return initialValue.concat(c)
+                }
+            },
+            initialValue,
+            );
+            return sumWithInitial
+        }
+        const m = b(a)
+        // console.log(8, m)
+        function format (arr) {
+            let box = []
+            arr.forEach(element => {
+                if (Array.isArray(element)) {
+                    box = box.concat(format(element))
+                } else {
+                    box.push(element)
+                }
+            });
+            return box
+        }
+
+    //    const box = format(a);
+    //     console.log(2, box)
+
+
+        function debounce(fn, delay) {
+            let timer
+            return function(){
+                let args = arguments
+                if(timer) clearTimeout(timer)
+                
+                timer = setTimeout(()=>{
+                    fn.call(this,...args )
+                },delay)
+                
+            }
+        }
+        function sendMsg(msg) {
+            
+            console.log('sendMsg函数的this指向是')
+        }
+        // document.querySelector('.inp').addEventListener('input', debounce(sendMsg, 1000))//防抖函数
+      
+        new Promise((res, rej) => {
+            // console.log(2)
+        }).then(() => {
+            setTimeout(() => {
+            console.log(7)
+        }, 0);
+        })
+        new Promise((res, rej) => {
+            // console.log(8)
+        }).then(() => {
+            setTimeout(() => {
+            console.log(9)
+        }, 0);
+        })
+        setTimeout(() => {
+            // console.log(5)
+        }, 0);
+    </script>
+</body>
+</html>
