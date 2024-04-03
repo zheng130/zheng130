@@ -1,0 +1,43 @@
+{
+  "name": "cli-self-test",
+  "version": "1.0.1",
+  "description": "",
+  "main": "index.js",
+  "bin": {
+    "code": "bin/index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "dev": "nodemon index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zheng130/zheng130.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zheng130/zheng130/issues"
+  },
+  "homepage": "https://github.com/zheng130/zheng130#readme",
+  "dependencies": {
+    "axios": "^1.6.8",
+    "cheerio": "^1.0.0-rc.12",
+    "crypto-js": "^4.2.0",
+    "file-loader": "^6.2.0",
+    "glob": "^10.3.10",
+    "jquery": "^3.7.1",
+    "JSON": "^1.0.0",
+    "jszip": "^3.10.1",
+    "node-fetch": "^2.6.1",
+    "nodemon": "^3.1.0",
+    "url-loader": "^4.1.1",
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "devDependencies": {
+    "html-webpack-plugin": "^5.6.0"
+  }
+}
