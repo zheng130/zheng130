@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function createObject(str) {
+            let arr = str.split('.');
+            let m = {}
+            arr.reduce((a, b) => {
+                 a[b] = {}
+                 return a[b]
+            }, m)
+            console.log(m)
+        }
+
+        let st = 'aaa.bbb.ccc.ddd'
+        const k = createObject(st);
+        // console.log(k)
+
+
+        let arr = [1,2,[3,4,[5,6]]]
+        function format (arr) {
+           const b = arr.reduce((c, element) => {
+                if (Array.isArray(element)) {
+                    c = c.concat(format(element))
+                } else {
+                    c.push(element)
+                }
+                return c
+            }, []);
+    
+            return b
+        }
+        const mm = format(arr)
+        // console.log(mm)
+       
+
+        const array1 = [1, 2, [3, 4, [5,6]],7];
+        function f (arr) {
+            let a = [];
+            return arr.reduce((r, t) => {
+                if (Array.isArray(t)) {
+                    a = a.concat(f(t))
+                } else {
+                    a = a.concat(t)
+                }
+                return a
+            }, [])
+            // return arr.reduce((acc, val) => {
+            //     return acc.concat( Array.isArray(val) ? f(val) : val
+            //     );
+            // }, []);
+        }
+        const m = f(array1)
+        // console.log(m)
+    </script>
+</body>
+</html>
