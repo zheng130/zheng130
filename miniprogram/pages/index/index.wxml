@@ -1,0 +1,5 @@
+<!--index.wxml-->
+<view>
+  <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">登陆</button>
+  <button bind:tap="go">request</button>
+</view>
