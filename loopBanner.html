@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        .box {
+            width: 200px;
+            height: 130px;
+            margin: 70px auto;
+            position: relative;
+            outline: 5px solid #000;
+            /* overflow: hidden; */
+        }
+        .box .content {
+            height: 100%;
+            width: 200px;
+            display: flex;
+        }
+        .content img {
+            z-index: -1;
+            width: 200px;
+            height: 130px;
+            float: left;
+            position: relative;
+            flex-shrink: 0;
+        }
+        .left {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border: 1px solid red;
+            left: 30px;
+            bottom: 10px;
+        }
+        .right {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border: 1px solid red;
+            right: 30px;
+            bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="content">
+            <img class="img1" src="https://t7.baidu.com/it/u=1595072465,3644073269&fm=193&f=GIF" alt="">
+            <img class="img2" src="https://t7.baidu.com/it/u=1819248061,230866778&fm=193&f=GIF" alt="">
+            <img class="img3" src="https://t7.baidu.com/it/u=2168645659,3174029352&fm=193&f=GIF" alt="">
+        </div>
+        <span class="left"></span>
+        <span class="right"></span>
+    </div>
+    <script>
+        let content = document.querySelector('.content');
+        let left = document.querySelector('.left');
+        let right = document.querySelector('.right');
+        let current = 0
+        function init() {
+            let img1 = new Image()
+            let img2 = new Image()
+            let child1 = content.children[0].cloneNode(true);
+            let child2 = content.children[2].cloneNode(true);
+            // content.append(child1)
+            content.insertBefore(child2, content.children[0])
+            child2.style.position = 'absolute';
+            child2.style.transform = 'translateX(-100%)'
+        }
+        init()
+        left.onclick = () => {
+            let len = content.children.length;
+            if (current == 2) {
+                content.style.transform = `translateX(100%)`
+                console.log('无缝', current)
+                content.style.transition = `none`
+                // 触发浏览器重新渲染
+                content.clientHeight;
+                moveTo(0)
+            } else {
+                moveTo(current+1)
+            }
+        }
+        
+        function moveTo(index) {
+            content.style.transform = `translateX(-${index*100}%)`
+            content.style.transition = `.5s`
+            current = index
+        }
+        right.onclick = () => {
+            
+        }
+
+    </script>
+</body>
+</html>

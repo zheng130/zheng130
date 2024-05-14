@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>接收消息页面</title>
+</head>
+<body>
+<h1>接收消息页面</h1>
+<p id="receivedMessage"></p>
+
+<script>
+// 监听来自发送页面的消息
+window.addEventListener('message', function(event) {
+  // 确保消息来自预期的来源
+  if (event.origin !== 'http://localhost:8080') return;
+
+  // 显示接收到的消息
+  var receivedMessage = document.getElementById('receivedMessage');
+  receivedMessage.textContent = 'Received message: ' + event.data;
+});
+</script>
+</body>
+</html>

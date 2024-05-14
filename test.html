@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product Description Page with Videos</title>
+<style>
+  .product-description {
+    margin-bottom: 20px;
+  }
+  .video-previews {
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+    margin-bottom: 10px;
+  }
+  .video-previews img {
+    display: inline-block;
+    width: 100px;
+    height: auto;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+  #videoPlayer {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 9999;
+  }
+  #videoContainer {
+    position: relative;
+    width: 95%;
+    height: auto;
+    max-width: 800px;
+    max-height: 80vh;
+    margin: 20px auto;
+  }
+  #mainVideo {
+    width: 100%;
+    height: 100%;
+  }
+  #closeBtn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 24px;
+    color: #fff;
+  }
+  .video-nav {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+  }
+  .video-nav button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin: 0 3px;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  #prevBtn {
+    background-image: url('http://www.fandike.net/images/upload/image/20240324/20240324032901_54191.png');
+  }
+  #nextBtn {
+    background-image: url('http://www.fandike.net/images/upload/image/20240324/20240324032852_34199.png');
+  }
+</style>
+</head>
+<body>
+
+<script>
+  let person = {
+      name: 'zen',
+      age: 1,
+      get c() {
+        // console.log(1)
+        return this.name +':'+this.age
+      }
+  }
+  Reflect.set(person, 'a', 4)
+  Reflect.set(person, 'name', 4)
+  // var proxy = new Proxy(person, {
+  //     get: function(target, propKey) {
+  //       return Reflect.get(target,propKey)
+  //     }
+  // });
+  let proxy = new Proxy(person, {
+    get(target, key) {
+      console.log('read:', key)
+      return target[key]
+      // return Reflect.get(target, key, proxy)
+    }
+  })
+
+  console.log(proxy.c)
+
+
+</script>
+
+</body>
+</html>

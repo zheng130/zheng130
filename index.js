@@ -43,3 +43,6 @@ function b (arr) {
 }
 let c = b(a)
 console.log(':',c)
+
+
+

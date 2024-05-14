@@ -1,0 +1,46 @@
+let urls = []
+for (let i = 1; i < 10; i++) {
+    urls.push(`http://jsonplaceholder.typicode.com/todos/${i}`)
+}
+let requestFn = (urls, max) => {
+    return new Promise((resolve, reject) => {
+        if (urls.length == 0) {
+            resolve([]);
+            return
+        }
+        const results = [];
+        let count = 0;
+        let index = 0;
+        async function request() {
+            if (index == urls.length) {
+                return;
+            }
+            let url = urls[index];
+            let i = index;
+            index++;
+            console.log(url)
+            try {
+                const res = await fetch(url);
+                results[i] = res;
+            } catch (error) {
+                results[i] = error
+            } finally {
+                count++;
+                if (count == urls.length) {
+                    resolve(results)
+                }
+                request()
+            }
+        }
+
+        let num = Math.min(urls, max);
+        for (let i = 0; i < num; i++) {
+            request() 
+        }
+
+    })
+}
+
+requestFn(urls, 3).then((res) => {
+    console.log(res)
+})

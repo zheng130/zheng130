@@ -16,7 +16,7 @@ module.exports =  class myPlugin {
           zip.generateAsync({
               type: 'nodebuffer'
           }).then((content) => {
-            console.log(content)
+            console.log(2,compilation.assets)
             const outputPath = path.join(
               compilation.options.output.path, 
               this.options.filename + '.zip'
