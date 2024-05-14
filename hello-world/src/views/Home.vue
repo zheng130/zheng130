@@ -1,11 +1,11 @@
 <template>
   <div class="home">
-    <img class="img" alt="Vue logo" src="../assets/2.jpeg">
-    <div class="flag" style="position: absolute;left: 94px;top: 213px; width: 84px;height: 27px;"></div>
-    <div class="p" >你好1</div>
+    <!-- <div class="flag" style="position: absolute;left: 94px;top: 213px; width: 84px;height: 27px;"></div> -->
+    <!-- <div class="p" @click="fn">你好1</div> -->
+    <!-- {{ obj }} -->
+    <!-- <HelloWorld :msg="obj"></HelloWorld> -->
     <!-- <button @click="go">btn</button>
     <h3>
-
       {{ fullName1.name }}<router-view></router-view>
       <div>
         <input type="text" v-model="firstName">
@@ -14,56 +14,70 @@
       </div>
     </h3>
     <ap :msg="obj"></ap> -->
+    <!-- <button @click="add">btn</button>
+    <dd :count="count"></dd> -->
+    <!-- <ee></ee> -->
+    <button @click="add">btn</button>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-// import ap from '../components/a.vue'
+// import HelloWorld from '../components/HelloWorld.vue'
+// import dd from '../components/d.vue'
+// import ee from '../components/e.vue'
+import tips from '../utils/diolang'
+import $ from 'jquery'
 export default {
   name: 'home',
   components: {
     // ap
+    // HelloWorld,
+    // dd, ee
+  },
+  destroyed() {
+    window.console.log(33)
   },
   methods: {
+    add() {
+      $('body').html(888)
+    },
     go () {
       this.obj={mm:1}
+    },
+    fn () {
+      this.obj.name = ''
+      // this.$router.push({
+      //   path: '/about'
+      // })
     }
   },
   data() {
     return {
-      time: null,
-      obj: {
-        name: ''
+      ddd: function() {
+        window.console.log(88)
+        return '999'
       },
+      count: 1,
+      time: null,
+      obj: {name: {
+        age: 33
+      }},
       firstName: '',
       lastName: ''
     }
   },
   computed: {
-    fullName1() {
-      return {name: this.lastName}
+    isEmpty() {
+      return this.obj.name != null
     }
   },
   created () {
-    let a = new Array(1000);
-    for (let i = 0; i < a.length; i++) {
-     window.console.log(1)
-    }
-   
-    const handler = {
-      get: function (obj, prop) {
-        return prop in obj ? obj[prop] : 37;
-      },
-    };
-
-  const p = new Proxy({}, handler);
-  p.a = 1;
-  p.b = undefined;
-
-  window.console.log(p.a, p.b); // 1, undefined
-  window.console.log("c" in p, p.c); // false, 37
-
+    // this.obj = {}
+    // setTimeout(() => {
+    //   this.obj.name=99
+    // }, 2000);
+    tips()
   },
 }
 </script>

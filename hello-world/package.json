@@ -10,10 +10,14 @@
   "dependencies": {
     "core-js": "^2.6.5",
     "delay": "^6.0.0",
+    "jquery": "^3.7.1",
+    "jszip": "^3.10.1",
+    "node-html-parser": "^6.1.13",
     "npm-delay": "^1.0.4",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",
-    "vuex": "^3.0.1"
+    "vuex": "^3.0.1",
+    "webpack-bundle-analyzer": "^4.10.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.3",

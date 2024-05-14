@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script src="http://39.108.85.221/zheng130/js/react.development.js"></script>
+    <script src="http://39.108.85.221/zheng130/js/react-dom.development.js"></script>
+    <script src="http://39.108.85.221/zheng130/js/babel.min.js"></script>
+    <script type="text/babel">
+        class Weather extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { isHot: false };
+                this.say = this.say.bind(this);
+            }
+            render() {
+                return <h2 onClick={this.say}>hello{this.state.isHot?1:2}</h2>
+            }
+            say () {
+                console.log(this)
+            }
+            
+        }
+        // 创建一个React元素
+        const element = <h1>Hello, React!</h1>;
+
+        // 将React元素渲染到DOM中
+        ReactDOM.render(<Weather name='he'/>, document.getElementById('root'));
+    </script>
+
+    <script>
+        console.log(1)
+        class People {
+            static name = 'j';
+
+            constructor() {
+            }
+
+            static say() {
+                console.log(People.name);
+            }
+        }
+
+        let b = new People();
+        
+    </script>
+</body>
+</html>

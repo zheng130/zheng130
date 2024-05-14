@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>发送消息页面</title>
+</head>
+<body>
+<h1>发送消息页面</h1>
+<button id="sendMessageBtn">发送消息给接收页面</button>
+<iframe style="border: 1px solid;" src="http://localhost:5173" frameborder="0"></iframe>
+
+
+<script>
+// 获取发送消息的按钮
+var sendMessageBtn = document.getElementById('sendMessageBtn');
+
+// 当按钮被点击时，发送消息给接收页面
+sendMessageBtn.addEventListener('click', function() {
+  // 获取接收消息的页面
+  var receiverWindow = window.opener || window.parent;
+    console.log(receiverWindow)
+  // 发送消息
+  receiverWindow.postMessage('Hello from sender.html!', '*');
+});
+</script>
+</body>
+</html>

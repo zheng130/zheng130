@@ -13,8 +13,36 @@
 <body>
     <div class="box"></div>
     <script>
-        
-        
-    </script>
+        function deepClone(obj) {
+            if (typeof obj !== 'object' || obj === null) {
+                return obj;
+            }
+
+            let result;
+            if (Array.isArray(obj)) {
+                result = [];
+                for (let i = 0; i < obj.length; i++) {
+                    result.push(deepClone(obj[i]));
+                }
+            } else {
+                result = {};
+                for (let key in obj) {
+                    if (obj.hasOwnProperty(key)) {
+                        result[key] = deepClone(obj[key]);
+                    }
+                }
+            }
+            return result;
+        }
+
+        function factorial(n) {
+            if (n === 0) {
+                return 1;
+            } else {
+                return n * factorial(n - 1);
+            }
+        }
+
+</script>
 </body>
 </html>

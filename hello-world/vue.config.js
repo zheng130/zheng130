@@ -1,5 +1,31 @@
 const pxtovw = require('postcss-px-to-viewport');
+
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const webpack = require('webpack')
+const ZipPlugin = require('./plugins/ZipPlugin')
+const urlPatter = require('./plugins/urlPatter')
+const path = require('path')
+
 module.exports = {
+    configureWebpack: {
+        // BundleAnalyzerPlugin只在开发环境使用
+       plugins: [
+            // new BundleAnalyzerPlugin(),
+            new webpack.DefinePlugin({
+                TWO: "'fff'",
+            }),
+            // new ZipPlugin({
+            //     filename: 'zhen'
+            // }),
+            new urlPatter({
+                filePath: path.resolve(__dirname, 'dist')
+            }),
+        ],
+       externals: {
+            jquery: 'jQuery',
+            // 'vue-router':'VueRouter',
+        },
+   },
     css:{
         loaderOptions:{
             sass:{

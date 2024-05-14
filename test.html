@@ -79,109 +79,33 @@
 </head>
 <body>
 
-<div class="product-description">
-  <h1>Product Name</h1>
-  <p>Description of the product goes here...</p>
-  
-  <!-- Video Preview Images -->
-  <div class="video-previews">
-    <img src="https://cdn.shopify.com/s/files/1/0631/6559/5808/files/1_1121c250-ce76-47d5-9209-a39a2efd0ceb.jpg?v=1712990924" alt="Video Preview 1" class="video-preview" data-video="https://cdn.shopify.com/videos/c/o/v/0b986190322f430286dd2e2d7890f328.mp4">
-    <img src="https://cdn.shopify.com/s/files/1/0631/6559/5808/files/1_1121c250-ce76-47d5-9209-a39a2efd0ceb.jpg?v=1712990924" alt="Video Preview 1" class="video-preview" data-video="https://cdn.shopify.com/videos/c/o/v/0b986190322f430286dd2e2d7890f328.mp4">
-	  <img src="https://cdn.shopify.com/s/files/1/0631/6559/5808/files/1_1121c250-ce76-47d5-9209-a39a2efd0ceb.jpg?v=1712990924" alt="Video Preview 1" class="video-preview" data-video="https://cdn.shopify.com/videos/c/o/v/0b986190322f430286dd2e2d7890f328.mp4">
-	  <img src="https://cdn.shopify.com/s/files/1/0631/6559/5808/files/1_1121c250-ce76-47d5-9209-a39a2efd0ceb.jpg?v=1712990924" alt="Video Preview 1" class="video-preview" data-video="https://cdn.shopify.com/videos/c/o/v/0b986190322f430286dd2e2d7890f328.mp4">
-	  <img src="https://cdn.shopify.com/s/files/1/0631/6559/5808/files/1_1121c250-ce76-47d5-9209-a39a2efd0ceb.jpg?v=1712990924" alt="Video Preview 1" class="video-preview" data-video="https://cdn.shopify.com/videos/c/o/v/0b986190322f430286dd2e2d7890f328.mp4">
-    <!-- Add more video preview images as needed -->
-  </div>
-</div>
-
-<!-- Video Player Popup -->
-<div id="videoPlayer">
-  <div id="videoContainer">
-    <video id="mainVideo" controls>
-      Your browser does not support the video tag.
-    </video>
-    <span id="closeBtn">&#10006;</span>
-    <div class="video-nav">
-      <button id="prevBtn"></button>
-      <button id="nextBtn"></button>
-    </div>
-  </div>
-</div>
-
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const videoPreviews = document.querySelectorAll('.video-preview');
-    const videoPlayer = document.getElementById('videoPlayer');
-    const mainVideo = document.getElementById('mainVideo');
-    const closeBtn = document.getElementById('closeBtn');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    let currentVideoIndex = 0;
-    let touchStartY = 0;
-    let touchEndY = 0;
-  
-    videoPreviews.forEach(function(preview, index) {
-      preview.addEventListener('click', function() {
-        currentVideoIndex = index;
-        const videoSrc = preview.getAttribute('data-video'); // 获取data-video属性的值作为视频路径
-        mainVideo.src = videoSrc;
-        videoPlayer.style.display = 'block';
-        mainVideo.play();
-      });
-    });
-  
-    closeBtn.addEventListener('click', function() {
-      videoPlayer.style.display = 'none';
-      mainVideo.pause();
-    });
-  
-    prevBtn.addEventListener('click', function() {
-      prevVideo();
-    });
-  
-    nextBtn.addEventListener('click', function() {
-      nextVideo();
-    });
-  
-    function prevVideo() {
-      currentVideoIndex = (currentVideoIndex - 1 + videoPreviews.length) % videoPreviews.length;
-      const videoSrc = videoPreviews[currentVideoIndex].getAttribute('data-video');
-      mainVideo.src = videoSrc;
-      mainVideo.play();
-    }
-  
-    function nextVideo() {
-      currentVideoIndex = (currentVideoIndex + 1) % videoPreviews.length;
-      const videoSrc = videoPreviews[currentVideoIndex].getAttribute('data-video');
-      mainVideo.src = videoSrc;
-      mainVideo.play();
-    }
-  
-    document.addEventListener('touchstart', function(e) {
-      touchStartY = e.touches[0].clientY;
-    });
-  
-    document.addEventListener('touchend', function(e) {
-      touchEndY = e.changedTouches[0].clientY;
-      handleSwipe();
-    });
-  
-    function handleSwipe() {
-      const deltaY = touchEndY - touchStartY;
-      if (Math.abs(deltaY) > 50) {
-        if (deltaY > 0) {
-          prevVideo();
-        } else {
-          nextVideo();
-        }
+  let person = {
+      name: 'zen',
+      age: 1,
+      get c() {
+        // console.log(1)
+        return this.name +':'+this.age
       }
-    }
-  });
-  let a = function () {
-    var b = 333;
-    return b,'444'
   }
-  console.log(a())
+  Reflect.set(person, 'a', 4)
+  Reflect.set(person, 'name', 4)
+  // var proxy = new Proxy(person, {
+  //     get: function(target, propKey) {
+  //       return Reflect.get(target,propKey)
+  //     }
+  // });
+  let proxy = new Proxy(person, {
+    get(target, key) {
+      console.log('read:', key)
+      return target[key]
+      // return Reflect.get(target, key, proxy)
+    }
+  })
+
+  console.log(proxy.c)
+
+
 </script>
 
 </body>

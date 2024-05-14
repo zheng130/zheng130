@@ -5,10 +5,9 @@ function fn() {
     }
 }
    
-fn()
+
 let b = function() {
     for (let i = 0; i < a.length; i++) {
         window.console.log(1)
     }
 }
-b()
